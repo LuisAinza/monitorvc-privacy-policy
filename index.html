@@ -9,48 +9,107 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            line-height: 1.6;
+            line-height: 1.7;
             max-width: 900px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 30px 20px;
             color: #222;
-            background: #f7f7f7;
+            background: #f3f4f6;
         }
 
         .container {
             background: white;
-            padding: 40px;
-            border-radius: 12px;
+            padding: 45px;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
         }
 
         h1 {
             text-align: center;
-            margin-bottom: 10px;
-        }
-
-        h2 {
-            margin-top: 40px;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 8px;
+            margin: 0;
+            font-size: 32px;
         }
 
         .language {
             text-align: center;
-            margin-bottom: 40px;
+            margin-top: 8px;
+            margin-bottom: 45px;
             color: #666;
+            font-size: 15px;
         }
 
-        a {
-            color: #0066cc;
+        .version-title {
+            font-size: 25px;
+            margin-top: 50px;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ddd;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-top: 35px;
+            margin-bottom: 12px;
+            color: #222;
+        }
+
+        p {
+            margin: 0 0 18px 0;
+        }
+
+        ul {
+            margin-top: 8px;
+            margin-bottom: 20px;
+            padding-left: 25px;
+        }
+
+        li {
+            margin-bottom: 9px;
+        }
+
+        strong {
+            font-weight: 700;
+        }
+
+        code {
+            background: #f0f0f0;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+
+        .meta {
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        .separator {
+            height: 1px;
+            background: #ddd;
+            margin: 55px 0;
         }
 
         @media (max-width: 600px) {
             body {
-                padding: 15px;
+                padding: 10px;
             }
 
             .container {
-                padding: 20px;
+                padding: 25px 20px;
+                border-radius: 10px;
+            }
+
+            h1 {
+                font-size: 27px;
+            }
+
+            .version-title {
+                font-size: 22px;
+            }
+
+            h3 {
+                font-size: 19px;
             }
         }
     </style>
@@ -71,307 +130,436 @@
     <!--                 ENGLISH VERSION                       -->
     <!-- ===================================================== -->
 
-    <h2>Privacy Policy — English</h2>
+    <h2 class="version-title">Privacy Policy — English</h2>
 
-    <!-- PEGA AQUÍ TU POLÍTICA EN INGLÉS -->
-
-    <p>
-        # MonitorVC privacy policy
-
-Last updated: September 14, 2026 (revision 4, app version 3.2)
-Controller: Luis Pablo Ainza Baranzini
-Contact: luispaainza@gmail.com
-
-Versión en español: [`PRIVACIDAD.md`](PRIVACIDAD.md). If the two differ, both describe the same
-behavior; report the difference so it can be fixed.
-
-## Summary
-
-MonitorVC (MVC) counts how many short videos you watch. **It does not look at what those videos
-show.** It does not collect, transmit or share any personal data: everything it records is
-stored only in your phone's private app storage and never leaves it. The app has no ads, no
-analytics, no tracking tools and no AI, and it does not connect to any server.
-
-## Data the app creates
-
-MonitorVC stores on your device, in private app databases:
-
-- How many short videos you watch each day, and how they spread across the hours of the day.
-- How many of those videos were on Instagram, YouTube and TikTok.
-- Total scrolling time and number of sessions per day.
-- Your settings: daily goal, rest time, rest days, panel opacity, and whether the on-screen
-  reminder and vibration reminders are on.
-- The weekly and monthly reports the app builds from the above.
-
-This data does **not** include which videos you watched, what they were about, who posted them,
-or any text, image or sound from the apps you use.
-
-## What MonitorVC does not do with content
-
-MonitorVC does **not** read, analyze, store or classify the content of the videos: no images,
-audio, captions, titles, descriptions, hashtags or accounts, and not the topic they are about.
-It does not use artificial intelligence, on the phone or in the cloud, to inspect your activity.
-
-Versions 3.1 and earlier included an optional, off-by-default "content analysis" feature that
-read the visible text of each counted video to group it by topic. **That feature was removed in
-version 3.2.** When the app updates, it automatically and permanently deletes anything that
-feature had stored; your count history is kept.
-
-## Use of the accessibility service
-
-MonitorVC uses Android's accessibility API, with your explicit permission, to detect when you
-scroll the short-video feed in Instagram, YouTube or TikTok. Android offers no other way to
-know that someone moved to the next video inside another app.
-
-Before sending you to Settings, the app's welcome screen explains what the service is used for
-and what it is not used for, and asks you to tick a consent checkbox. You can use the app
-without turning the service on.
-
-The service is limited to the app list declared in its configuration: the three short-video
-apps, MonitorVC itself and a fixed list of home-screen launchers. Nothing is read from the
-launchers: they only signal that you left the video app, so the day's count is saved and the
-date can roll over.
-
-To count, it only uses the **structure** of the scroll: the type of component that scrolled,
-how many items it contains, its position on screen and the distance scrolled. It subscribes to
-scroll events (`typeViewScrolled`) and window-change events (`typeWindowStateChanged`); the
-latter are only used to know which of those apps is in the foreground. While YouTube is in
-front, the service also requests the views YouTube marks as not important for accessibility,
-because its Shorts carousel lives there.
-
-When you turn on any service of this kind, Android shows a generic warning that the app could
-view and control the screen. That describes what the permission allows in general; what
-MonitorVC does with it is exactly what this section describes.
-
-The service draws two things over the video apps:
-
-- **The count panel**, a small pill that does not receive touches.
-- **The on-screen reminder**, only if you turn it on (it is off by default). When you reach a
-  limit it covers the feed for 10 seconds with a centered message and then goes away by itself.
-  It has no button to keep watching; its only action, "Close the app", performs the equivalent
-  of pressing the phone's Home button, always after your tap. The system bars (home, back and
-  recents) keep working while it is shown, and it disappears if you go back to the home screen
-  or the screen turns off.
-
-MonitorVC does **not** read, store or transmit:
-
-- text shown on screen or text you type,
-- passwords, messages, emails, comments, searches or form contents,
-- images, audio or video,
-- your contacts, your location or device identifiers.
-
-You can turn the service off at any time in Settings, Accessibility. The app then stops
-counting, and your existing history stays on the phone.
-
-## Permissions
-
-The app declares two permissions:
-
-- `android.permission.VIBRATE`, to alert you with a vibration when you reach a limit.
-- `android.permission.USE_BIOMETRIC`, to lock the app with your fingerprint or phone PIN.
-  Android performs the authentication; MonitorVC never sees or stores your fingerprint or PIN.
-
-Android's biometric library may add `android.permission.USE_FINGERPRINT`, the older equivalent,
-for the same purpose.
-
-The app does **not** declare the internet permission, the display-over-other-apps permission or
-the notifications permission. It cannot send data anywhere.
-
-## App lock
-
-If your phone has a screen lock (fingerprint, PIN, pattern or password), MonitorVC asks for it
-when it opens; otherwise it opens directly.
-
-## Backups
-
-Android's automatic backup is **disabled** (`allowBackup="false"` plus data extraction rules).
-Your statistics are not uploaded to your Google account and do not move in a phone-to-phone
-transfer. The trade-off is that if you change devices or reinstall the app, you start over.
-
-## Sharing
-
-MonitorVC shares data with no one. The only way information leaves the app is initiated by you:
-a report's "Export and share as PDF" button creates a PDF with counts and times and opens
-Android's share sheet so you choose where to send it. You create and send that file; the app
-does not upload it anywhere.
-
-## Retention and deletion
-
-Data stays on your device until you delete it. You can delete everything from Android Settings,
-Apps, MonitorVC, Storage, Clear data, or by uninstalling the app.
-
-## Children
-
-The app is not specifically directed at children under 13 and does not collect data from anyone,
-regardless of age. It has no remote monitoring or parental-control features.
-
-## Changes
-
-Any change will be published at this same address, with an updated date at the top.
-
-## Contact
-
-For any question about this policy, write to luispaainza@gmail.com.
+    <p class="meta">
+        <strong>MonitorVC privacy policy</strong><br>
+        Last updated: September 14, 2026 (revision 4, app version 3.2)<br>
+        Controller: Luis Pablo Ainza Baranzini<br>
+        Contact: luispaainza@gmail.com
     </p>
 
-    <!-- FIN DE LA POLÍTICA EN INGLÉS -->
+    <p>
+        Versión en español: <code>PRIVACIDAD.md</code>. If the two differ, both describe the same
+        behavior; report the difference so it can be fixed.
+    </p>
+
+    <h3>Summary</h3>
+
+    <p>
+        MonitorVC (MVC) counts how many short videos you watch.
+        <strong>It does not look at what those videos show.</strong>
+        It does not collect, transmit or share any personal data: everything it records is
+        stored only in your phone's private app storage and never leaves it.
+        The app has no ads, no analytics, no tracking tools and no AI, and it does not connect
+        to any server.
+    </p>
+
+    <h3>Data the app creates</h3>
+
+    <p>
+        MonitorVC stores on your device, in private app databases:
+    </p>
+
+    <ul>
+        <li>How many short videos you watch each day, and how they spread across the hours of the day.</li>
+        <li>How many of those videos were on Instagram, YouTube and TikTok.</li>
+        <li>Total scrolling time and number of sessions per day.</li>
+        <li>Your settings: daily goal, rest time, rest days, panel opacity, and whether the on-screen reminder and vibration reminders are on.</li>
+        <li>The weekly and monthly reports the app builds from the above.</li>
+    </ul>
+
+    <p>
+        This data does <strong>not</strong> include which videos you watched, what they were about,
+        who posted them, or any text, image or sound from the apps you use.
+    </p>
+
+    <h3>What MonitorVC does not do with content</h3>
+
+    <p>
+        MonitorVC <strong>does not</strong> read, analyze, store or classify the content of the videos:
+        no images, audio, captions, titles, descriptions, hashtags or accounts, and not the topic
+        they are about. It does not use artificial intelligence, on the phone or in the cloud,
+        to inspect your activity.
+    </p>
+
+    <p>
+        Versions 3.1 and earlier included an optional, off-by-default "content analysis" feature
+        that read the visible text of each counted video to group it by topic.
+        <strong>That feature was removed in version 3.2.</strong>
+        When the app updates, it automatically and permanently deletes anything that feature had
+        stored; your count history is kept.
+    </p>
+
+    <h3>Use of the accessibility service</h3>
+
+    <p>
+        MonitorVC uses the Android accessibility API, with your explicit permission, to detect
+        when you scroll the short-video feed in Instagram, YouTube or TikTok.
+        Android offers no other way to know that someone moved to the next video inside another app.
+    </p>
+
+    <p>
+        Before sending you to Settings, the app's welcome screen explains what the service is used
+        for and what it is not used for, and asks you to tick a consent checkbox.
+        You can use the app without turning the service on.
+    </p>
+
+    <p>
+        The service is limited to the app list declared in its configuration: the three short-video
+        apps, MonitorVC itself and a fixed list of home-screen launchers. Nothing is read from the
+        launchers: they only signal that you left the video app, so the day's count is saved and
+        the date can roll over.
+    </p>
+
+    <p>
+        To count, it only uses the <strong>structure</strong> of the scroll: the type of component
+        that scrolled, how many items it contains, its position on screen and the distance scrolled.
+        It subscribes to scroll events (<code>typeViewScrolled</code>) and window-change events
+        (<code>typeWindowStateChanged</code>); the latter are only used to know which of those apps
+        is in the foreground. While YouTube is in front, the service also requests the views
+        YouTube marks as not important for accessibility, because its Shorts carousel lives there.
+    </p>
+
+    <p>
+        When you turn on any service of this kind, Android shows a generic warning that the app
+        could view and control the screen. That describes what the permission allows in general;
+        what MonitorVC does with it is exactly what this section describes.
+    </p>
+
+    <p>
+        The service draws two things over the video apps:
+    </p>
+
+    <ul>
+        <li>
+            <strong>The count panel</strong>, a small pill that does not receive touches.
+        </li>
+        <li>
+            <strong>The on-screen reminder</strong>, only if you turn it on (it is off by default).
+            When you reach a limit it covers the feed for 10 seconds with a centered message and
+            then goes away by itself. It has no button to keep watching; its only action,
+            "Close the app", performs the equivalent of pressing the phone's Home button,
+            always after your tap. The system bars (home, back and recents) keep working while
+            it is shown, and it disappears if you go back to the home screen or the screen turns off.
+        </li>
+    </ul>
+
+    <p>
+        MonitorVC does <strong>not</strong> read, store or transmit:
+    </p>
+
+    <ul>
+        <li>text shown on screen or text you type,</li>
+        <li>passwords, messages, emails, comments, searches or form contents,</li>
+        <li>images, audio or video,</li>
+        <li>your contacts, your location or device identifiers.</li>
+    </ul>
+
+    <p>
+        You can turn the service off at any time in Settings, Accessibility.
+        The app then stops counting, and your existing history stays on the phone.
+    </p>
+
+    <h3>Permissions</h3>
+
+    <p>
+        The app declares two permissions:
+    </p>
+
+    <ul>
+        <li>
+            <code>android.permission.VIBRATE</code>, to alert you with a vibration when you reach a limit.
+        </li>
+        <li>
+            <code>android.permission.USE_BIOMETRIC</code>, to lock the app with your fingerprint or phone PIN.
+            Android performs the authentication; MonitorVC never sees or stores your fingerprint or PIN.
+        </li>
+    </ul>
+
+    <p>
+        Android's biometric library may add <code>android.permission.USE_FINGERPRINT</code>,
+        the older equivalent, for the same purpose.
+    </p>
+
+    <p>
+        The app does <strong>not</strong> declare the internet permission, the display-over-other-apps
+        permission or the notifications permission. It cannot send data anywhere.
+    </p>
+
+    <h3>App lock</h3>
+
+    <p>
+        If your phone has a screen lock (fingerprint, PIN, pattern or password), MonitorVC asks
+        for it when it opens; otherwise it opens directly.
+    </p>
+
+    <h3>Backups</h3>
+
+    <p>
+        Android's automatic backup is <strong>disabled</strong>
+        (<code>allowBackup="false"</code> plus data extraction rules).
+        Your statistics are not uploaded to your Google account and do not move in a phone-to-phone
+        transfer. The trade-off is that if you change devices or reinstall the app, you start over.
+    </p>
+
+    <h3>Sharing</h3>
+
+    <p>
+        MonitorVC shares data with no one. The only way information leaves the app is initiated by you:
+        a report's "Export and share as PDF" button creates a PDF with counts and times and opens
+        Android's share sheet so you choose where to send it. You create and send that file;
+        the app does not upload it anywhere.
+    </p>
+
+    <h3>Retention and deletion</h3>
+
+    <p>
+        Data stays on your device until you delete it. You can delete everything from Android Settings,
+        Apps, MonitorVC, Storage, Clear data, or by uninstalling the app.
+    </p>
+
+    <h3>Children</h3>
+
+    <p>
+        The app is not specifically directed at children under 13 and does not collect data from anyone,
+        regardless of age. It has no remote monitoring or parental-control features.
+    </p>
+
+    <h3>Changes</h3>
+
+    <p>
+        Any change will be published at this same address, with an updated date at the top.
+    </p>
+
+    <h3>Contact</h3>
+
+    <p>
+        For any question about this policy, write to luispaainza@gmail.com.
+    </p>
+
+
+    <!-- ===================================================== -->
+    <!--                 SEPARATOR                             -->
+    <!-- ===================================================== -->
+
+    <div class="separator"></div>
 
 
     <!-- ===================================================== -->
     <!--                 SPANISH VERSION                       -->
     <!-- ===================================================== -->
 
-    <h2>Política de Privacidad — Español</h2>
+    <h2 class="version-title">Política de Privacidad — Español</h2>
 
-    <!-- PEGA AQUÍ TU POLÍTICA EN ESPAÑOL -->
-
-    <p>
-        # Politica de privacidad de MonitorVC
-
-Ultima actualizacion: 14 de septiembre de 2026 (revision 4, version 3.2 de la app)
-Responsable: Luis Pablo Ainza Baranzini
-Contacto: luispaainza@gmail.com
-
-English version: [`PRIVACY.md`](PRIVACY.md)
-
-## Resumen
-
-MonitorVC (MVC) cuenta cuantos videos cortos ves. **No mira que muestran esos videos.** No
-recopila, no transmite y no comparte ningun dato personal: todo lo que registra se guarda
-unicamente en el almacenamiento privado de tu telefono y nunca sale de el. La aplicacion no
-incluye publicidad, ni analitica, ni herramientas de seguimiento, ni inteligencia artificial, y
-no se conecta a ningun servidor.
-
-## Que datos genera la aplicacion
-
-MonitorVC guarda en tu dispositivo, en bases de datos privadas de la aplicacion:
-
-- El numero de videos cortos que ves cada dia, y su reparto por hora del dia.
-- Cuantos de esos videos corresponden a Instagram, YouTube y TikTok.
-- El tiempo total de desplazamiento y el numero de sesiones de cada dia.
-- Tu configuracion: meta diaria, hora de descanso, dias de descanso, opacidad del panel y si
-  tienes activados el aviso en pantalla y las vibraciones de recordatorio.
-- Los reportes semanales y mensuales que la propia aplicacion genera a partir de lo anterior.
-
-Estos datos **no** incluyen que videos viste, de que trataban, quien los publico, ni ningun
-texto, imagen o sonido de las aplicaciones que utilizas.
-
-## Lo que MonitorVC no hace con el contenido
-
-MonitorVC **no** lee, no analiza, no guarda y no clasifica el contenido de los videos:
-ni imagenes, ni audio, ni subtitulos, titulos, descripciones, hashtags o cuentas, ni el tema
-del que hablan. Tampoco usa inteligencia artificial, ni en el telefono ni en la nube, para
-examinar tu actividad.
-
-Las versiones 3.1 y anteriores incluian un "analisis de contenido" opcional, apagado de
-fabrica, que leia el texto visible del video contado para agruparlo por temas. **Esa funcion se
-elimino en la version 3.2.** Al actualizar, la aplicacion borra de forma automatica y
-definitiva todo lo que esa funcion hubiera guardado; el historial de conteo se conserva.
-
-## Uso del servicio de accesibilidad
-
-MonitorVC utiliza la API de accesibilidad de Android, con tu autorizacion explicita, para
-detectar cuando desplazas el feed de videos cortos de Instagram, YouTube o TikTok. Android no
-ofrece otra forma de saber que una persona paso al siguiente video dentro de otra aplicacion.
-
-Antes de enviarte a Ajustes, la aplicacion te explica en su pantalla de bienvenida para que usa
-el servicio y para que no, y te pide marcar una casilla de consentimiento. Puedes entrar a la
-aplicacion sin activarlo.
-
-El servicio esta limitado a la lista de aplicaciones declarada en su configuracion: las tres
-aplicaciones de video corto, la propia MonitorVC y una lista cerrada de lanzadores del sistema.
-De los lanzadores no se lee nada: solo sirven como senal de que saliste de la aplicacion de
-video, para guardar el conteo del dia y hacer el cambio de fecha.
-
-Para contar solo utiliza la **estructura** del desplazamiento: el tipo de componente que se
-desplazo, el numero de elementos que contiene, su posicion en pantalla y la distancia
-recorrida. Se suscribe a eventos de desplazamiento (`typeViewScrolled`) y de cambio de pantalla
-(`typeWindowStateChanged`); estos ultimos solo sirven para saber cual de esas aplicaciones esta
-en primer plano. Mientras YouTube esta delante, el servicio pide tambien las vistas que YouTube
-marca como no importantes para accesibilidad, porque ahi esta su carrusel de Shorts.
-
-Android muestra, al activar cualquier servicio de este tipo, un aviso generico de que la
-aplicacion podria ver y controlar la pantalla. Eso describe lo que el permiso permite en
-general; lo que MonitorVC hace con el es exactamente lo descrito en esta seccion.
-
-El servicio dibuja dos elementos sobre las aplicaciones de video:
-
-- **El panel de conteo**, una pastilla pequena que no recibe toques.
-- **El aviso en pantalla**, solo si lo activas (viene apagado). Al llegar a un limite tapa el
-  feed durante 10 segundos con un mensaje centrado y se quita solo. No tiene boton para seguir
-  viendo; su unica accion, "Cerrar la app", ejecuta la accion equivalente a pulsar el boton de
-  Inicio del telefono, siempre despues de un toque tuyo. Las barras del sistema (inicio, atras
-  y recientes) siguen funcionando mientras se muestra, y el aviso se quita si vuelves a la
-  pantalla de inicio o se apaga la pantalla.
-
-MonitorVC **no** lee, guarda ni transmite:
-
-- el texto que aparece en pantalla ni el que escribes,
-- contrasenas, mensajes, correos, comentarios, busquedas ni contenido de formularios,
-- imagenes, audio ni video,
-- tus contactos, tu ubicacion ni identificadores de tu dispositivo.
-
-Puedes desactivar el servicio en cualquier momento desde Ajustes, Accesibilidad. Al
-desactivarlo la aplicacion deja de contar, y el historial que ya tenias sigue en el telefono.
-
-## Permisos
-
-La aplicacion declara dos permisos:
-
-- `android.permission.VIBRATE`, para avisarte con una vibracion cuando llegas a alguno de tus
-  limites.
-- `android.permission.USE_BIOMETRIC`, para el bloqueo de la aplicacion con tu huella o el PIN
-  del telefono. La autenticacion la realiza Android; MonitorVC nunca ve ni almacena tu huella
-  ni tu PIN.
-
-La biblioteca de biometria de Android puede anadir `android.permission.USE_FINGERPRINT`, el
-equivalente antiguo del anterior, para lo mismo.
-
-La aplicacion **no** declara el permiso de internet, ni el de mostrarse sobre otras
-aplicaciones, ni el de notificaciones. No puede enviar datos a ningun sitio.
-
-## Bloqueo de la aplicacion
-
-Si tu telefono tiene un bloqueo configurado (huella, PIN, patron o contrasena), MonitorVC lo
-pide al abrirse; si no lo tiene, se abre directamente.
-
-## Copias de seguridad
-
-La aplicacion tiene **desactivada** la copia de seguridad automatica de Android
-(`allowBackup="false"` y reglas de extraccion de datos). Tus estadisticas no se suben a tu
-cuenta de Google ni viajan en una transferencia a un telefono nuevo. La contrapartida es que, si
-cambias de dispositivo o reinstalas la aplicacion, empiezas de cero.
-
-## Comparticion de datos
-
-MonitorVC no comparte datos con nadie. La unica salida de informacion posible la inicias tu: el
-boton "Exportar y compartir en PDF" de un reporte crea un archivo PDF con conteos y horarios y
-abre el menu de compartir de Android para que elijas a donde enviarlo. Ese archivo lo generas y
-lo envias tu; la aplicacion no lo sube a ningun sitio.
-
-## Conservacion y borrado
-
-Los datos permanecen en tu dispositivo hasta que los elimines. Puedes borrarlos por completo
-desde Ajustes de Android, Aplicaciones, MonitorVC, Almacenamiento, Borrar datos, o
-desinstalando la aplicacion.
-
-## Menores de edad
-
-La aplicacion no esta dirigida especificamente a menores de 13 anos y no recopila datos de
-ninguna persona, independientemente de su edad. No incluye funciones de control o supervision
-remota.
-
-## Cambios en esta politica
-
-Cualquier cambio se publicara en esta misma direccion, actualizando la fecha del encabezado.
-
-## Contacto
-
-Para cualquier duda sobre esta politica, escribe a luispaainza@gmail.com.
+    <p class="meta">
+        <strong>Política de privacidad de MonitorVC</strong><br>
+        Última actualización: 14 de septiembre de 2026 (revisión 4, versión 3.2 de la app)<br>
+        Responsable: Luis Pablo Ainza Baranzini<br>
+        Contacto: luispaainza@gmail.com
     </p>
 
-    <!-- FIN DE LA POLÍTICA EN ESPAÑOL -->
+    <p>
+        English version: <code>PRIVACY.md</code>
+    </p>
 
+    <h3>Resumen</h3>
+
+    <p>
+        MonitorVC (MVC) cuenta cuántos videos cortos ves.
+        <strong>No mira qué muestran esos videos.</strong>
+        No recopila, no transmite y no comparte ningún dato personal: todo lo que registra
+        se guarda únicamente en el almacenamiento privado de tu teléfono y nunca sale de él.
+        La aplicación no incluye publicidad, ni analítica, ni herramientas de seguimiento,
+        ni inteligencia artificial, y no se conecta a ningún servidor.
+    </p>
+
+    <h3>Qué datos genera la aplicación</h3>
+
+    <p>
+        MonitorVC guarda en tu dispositivo, en bases de datos privadas de la aplicación:
+    </p>
+
+    <ul>
+        <li>El número de videos cortos que ves cada día, y su reparto por hora del día.</li>
+        <li>Cuántos de esos videos corresponden a Instagram, YouTube y TikTok.</li>
+        <li>El tiempo total de desplazamiento y el número de sesiones de cada día.</li>
+        <li>Tu configuración: meta diaria, hora de descanso, días de descanso, opacidad del panel y si tienes activados el aviso en pantalla y las vibraciones de recordatorio.</li>
+        <li>Los reportes semanales y mensuales que la propia aplicación genera a partir de lo anterior.</li>
+    </ul>
+
+    <p>
+        Estos datos <strong>no</strong> incluyen qué videos viste, de qué trataban, quién los publicó,
+        ni ningún texto, imagen o sonido de las aplicaciones que utilizas.
+    </p>
+
+    <h3>Lo que MonitorVC no hace con el contenido</h3>
+
+    <p>
+        MonitorVC <strong>no</strong> lee, no analiza, no guarda y no clasifica el contenido de los videos:
+        ni imágenes, ni audio, ni subtítulos, títulos, descripciones, hashtags o cuentas, ni el tema
+        del que hablan. Tampoco usa inteligencia artificial, ni en el teléfono ni en la nube,
+        para examinar tu actividad.
+    </p>
+
+    <p>
+        Las versiones 3.1 y anteriores incluían un "análisis de contenido" opcional, apagado de fábrica,
+        que leía el texto visible del video contado para agruparlo por temas.
+        <strong>Esa función se eliminó en la versión 3.2.</strong>
+        Al actualizar, la aplicación borra de forma automática y definitiva todo lo que esa función
+        hubiera guardado; el historial de conteo se conserva.
+    </p>
+
+    <h3>Uso del servicio de accesibilidad</h3>
+
+    <p>
+        MonitorVC utiliza la API de accesibilidad de Android, con tu autorización explícita,
+        para detectar cuándo desplazas el feed de videos cortos de Instagram, YouTube o TikTok.
+        Android no ofrece otra forma de saber que una persona pasó al siguiente video dentro
+        de otra aplicación.
+    </p>
+
+    <p>
+        Antes de enviarte a Ajustes, la aplicación te explica en su pantalla de bienvenida para qué
+        usa el servicio y para qué no, y te pide marcar una casilla de consentimiento.
+        Puedes entrar a la aplicación sin activarlo.
+    </p>
+
+    <p>
+        El servicio está limitado a la lista de aplicaciones declarada en su configuración:
+        las tres aplicaciones de video corto, la propia MonitorVC y una lista cerrada de lanzadores
+        del sistema. De los lanzadores no se lee nada: solo sirven como señal de que saliste de la
+        aplicación de video, para guardar el conteo del día y hacer el cambio de fecha.
+    </p>
+
+    <p>
+        Para contar solo utiliza la <strong>estructura</strong> del desplazamiento:
+        el tipo de componente que se desplazó, el número de elementos que contiene,
+        su posición en pantalla y la distancia recorrida. Se suscribe a eventos de desplazamiento
+        (<code>typeViewScrolled</code>) y de cambio de pantalla (<code>typeWindowStateChanged</code>);
+        estos últimos solo sirven para saber cuál de esas aplicaciones está en primer plano.
+        Mientras YouTube está delante, el servicio pide también las vistas que YouTube marca como
+        no importantes para accesibilidad, porque ahí está su carrusel de Shorts.
+    </p>
+
+    <p>
+        Android muestra, al activar cualquier servicio de este tipo, un aviso genérico de que la
+        aplicación podría ver y controlar la pantalla. Eso describe lo que el permiso permite en general;
+        lo que MonitorVC hace con él es exactamente lo descrito en esta sección.
+    </p>
+
+    <p>
+        El servicio dibuja dos elementos sobre las aplicaciones de video:
+    </p>
+
+    <ul>
+        <li>
+            <strong>El panel de conteo</strong>, una pastilla pequeña que no recibe toques.
+        </li>
+        <li>
+            <strong>El aviso en pantalla</strong>, solo si lo activas (viene apagado).
+            Al llegar a un límite tapa el feed durante 10 segundos con un mensaje centrado
+            y se quita solo. No tiene botón para seguir viendo; su única acción, "Cerrar la app",
+            ejecuta la acción equivalente a pulsar el botón de Inicio del teléfono, siempre después
+            de un toque tuyo. Las barras del sistema (inicio, atrás y recientes) siguen funcionando
+            mientras se muestra, y el aviso se quita si vuelves a la pantalla de inicio o se apaga
+            la pantalla.
+        </li>
+    </ul>
+
+    <p>
+        MonitorVC <strong>no</strong> lee, guarda ni transmite:
+    </p>
+
+    <ul>
+        <li>el texto que aparece en pantalla ni el que escribes,</li>
+        <li>contraseñas, mensajes, correos, comentarios, búsquedas ni contenido de formularios,</li>
+        <li>imágenes, audio ni video,</li>
+        <li>tus contactos, tu ubicación ni identificadores de tu dispositivo.</li>
+    </ul>
+
+    <p>
+        Puedes desactivar el servicio en cualquier momento desde Ajustes, Accesibilidad.
+        Al desactivarlo la aplicación deja de contar, y el historial que ya tenías sigue en el teléfono.
+    </p>
+
+    <h3>Permisos</h3>
+
+    <p>
+        La aplicación declara dos permisos:
+    </p>
+
+    <ul>
+        <li>
+            <code>android.permission.VIBRATE</code>, para avisarte con una vibración cuando llegas a alguno de tus límites.
+        </li>
+        <li>
+            <code>android.permission.USE_BIOMETRIC</code>, para el bloqueo de la aplicación con tu huella o el PIN del teléfono.
+            La autenticación la realiza Android; MonitorVC nunca ve ni almacena tu huella ni tu PIN.
+        </li>
+    </ul>
+
+    <p>
+        La biblioteca de biometría de Android puede añadir <code>android.permission.USE_FINGERPRINT</code>,
+        el equivalente antiguo del anterior, para lo mismo.
+    </p>
+
+    <p>
+        La aplicación <strong>no</strong> declara el permiso de internet, ni el de mostrarse sobre otras
+        aplicaciones, ni el de notificaciones. No puede enviar datos a ningún sitio.
+    </p>
+
+    <h3>Bloqueo de la aplicación</h3>
+
+    <p>
+        Si tu teléfono tiene un bloqueo configurado (huella, PIN, patrón o contraseña),
+        MonitorVC lo pide al abrirse; si no lo tiene, se abre directamente.
+    </p>
+
+    <h3>Copias de seguridad</h3>
+
+    <p>
+        La aplicación tiene <strong>desactivada</strong> la copia de seguridad automática de Android
+        (<code>allowBackup="false"</code> y reglas de extracción de datos).
+        Tus estadísticas no se suben a tu cuenta de Google ni viajan en una transferencia a un teléfono nuevo.
+        La contrapartida es que, si cambias de dispositivo o reinstalas la aplicación, empiezas de cero.
+    </p>
+
+    <h3>Compartición de datos</h3>
+
+    <p>
+        MonitorVC no comparte datos con nadie. La única salida de información posible la inicias tú:
+        el botón "Exportar y compartir en PDF" de un reporte crea un archivo PDF con conteos y horarios
+        y abre el menú de compartir de Android para que elijas a dónde enviarlo.
+        Ese archivo lo generas y lo envías tú; la aplicación no lo sube a ningún sitio.
+    </p>
+
+    <h3>Conservación y borrado</h3>
+
+    <p>
+        Los datos permanecen en tu dispositivo hasta que los elimines.
+        Puedes borrarlos por completo desde Ajustes de Android, Aplicaciones, MonitorVC,
+        Almacenamiento, Borrar datos, o desinstalando la aplicación.
+    </p>
+
+    <h3>Menores de edad</h3>
+
+    <p>
+        La aplicación no está dirigida específicamente a menores de 13 años y no recopila datos
+        de ninguna persona, independientemente de su edad. No incluye funciones de control o supervisión remota.
+    </p>
+
+    <h3>Cambios en esta política</h3>
+
+    <p>
+        Cualquier cambio se publicará en esta misma dirección, actualizando la fecha del encabezado.
+    </p>
+
+    <h3>Contacto</h3>
+
+    <p>
+        Para cualquier duda sobre esta política, escribe a luispaainza@gmail.com.
+    </p>
 
 </div>
 
